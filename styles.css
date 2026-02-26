@@ -53,20 +53,6 @@ body {
     radial-gradient(circle at 35% 25%, rgba(255, 255, 255, 0.22), transparent 30%);
 }
 
-.ribbon-shape {
-  position: fixed;
-  z-index: -2;
-  top: -14vh;
-  right: -18vw;
-  width: 72vw;
-  height: 68vh;
-  border-radius: 58% 45% 55% 45%;
-  background: var(--ink);
-  filter: blur(0.2px) drop-shadow(0 45px 85px rgba(0, 0, 0, 0.35));
-  clip-path: polygon(22% 0%, 90% 0%, 100% 18%, 92% 42%, 100% 78%, 78% 100%, 30% 88%, 9% 61%, 20% 38%);
-  opacity: 0.88;
-}
-
 a {
   color: inherit;
   text-decoration: none;
@@ -104,13 +90,32 @@ a {
   text-align: right;
 }
 
+.ticker {
+  width: min(1220px, 94vw);
+  margin: 0.5rem auto 0;
+  overflow: hidden;
+  border-top: 1px solid rgba(10, 10, 10, 0.18);
+  border-bottom: 1px solid rgba(10, 10, 10, 0.18);
+  background: rgba(255, 255, 255, 0.36);
+}
+
+.ticker div {
+  width: max-content;
+  padding: 0.55rem 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  animation: ticker-scroll 22s linear infinite;
+}
+
 .section {
   width: min(1220px, 94vw);
   margin: 0 auto;
 }
 
 .hero {
-  padding: 4rem 0 2.6rem;
+  padding: 3rem 0 2.8rem;
 }
 
 .hero-grid {
@@ -181,6 +186,7 @@ a {
   min-height: 520px;
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(255, 255, 255, 0.7);
 }
 
 .hero-main-img img,
@@ -190,12 +196,14 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
   display: block;
 }
 
 .hero-side-img {
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(255, 255, 255, 0.7);
 }
 
 .stat {
@@ -274,6 +282,7 @@ a {
   border-radius: 16px;
   min-height: 260px;
   box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(255, 255, 255, 0.65);
 }
 
 .tile.wide {
@@ -361,11 +370,17 @@ a {
   border-radius: 18px;
   background: var(--card);
   box-shadow: var(--shadow-soft);
+  transition: transform 280ms ease, box-shadow 280ms ease;
 }
 
 .archive-item img {
   min-height: 220px;
   border-radius: 12px;
+}
+
+.archive-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 26px 62px rgba(0, 0, 0, 0.18);
 }
 
 .tag {
@@ -422,6 +437,15 @@ a {
   font-weight: 600;
 }
 
+@keyframes ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-48%);
+  }
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(26px);
@@ -474,6 +498,14 @@ a {
     grid-template-columns: 1fr;
     gap: 0.35rem;
     margin-top: 0.65rem;
+  }
+
+  .ticker {
+    margin-top: 0.35rem;
+  }
+
+  .ticker div {
+    animation-duration: 15s;
   }
 
   .topbar p,
